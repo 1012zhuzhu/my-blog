@@ -7,6 +7,7 @@ const ThemeContext = createContext({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  //解决水合不匹配问题，避免引入mounted引发联级渲染
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === "undefined") return true;
     return localStorage.getItem("blog-theme") !== "light";
