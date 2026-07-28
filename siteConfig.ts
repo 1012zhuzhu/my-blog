@@ -10,8 +10,8 @@ export const siteConfig ={
 
     useGradient: false,
     bgImages: [
-    "https://背景图1.jpg",
-    "https://背景图2.jpg",
+    "/images/reze-wallpaper-v0-covln46a4vaa1.webp",
+    "/images/preview (2).jpg",
   ],
    themeColors: ["#a18cd1", "#fbc2eb", "#a1c4fd", "#c2e9fb"], 
 

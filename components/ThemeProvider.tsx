@@ -1,42 +1,34 @@
-"use client"
-import { createContext,useContext,useEffect,useState } from "react";
+"use client";
+import { createContext, useContext, useEffect, useState } from 'react';
 
-const ThemeContext = createContext({
-    isDark:true,
-    toggleTheme: () => {}
+const ThemeContext = createContext({ 
+  isDark: true, 
+  toggleTheme: () => {} 
 });
 
-export function ThemeProvider({children}:{children:React.ReactNode}) {
-    const [isDark,setIsDark] = useState(true);
-    const [mounted,setMounted] = useState(false);
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("blog-theme") !== "light";
+  });
 
-    useEffect(() => {
-        setMounted(true)
-        const saveTheme = localStorage.getItem('blog-theme');
-        const isDarkMode = saveTheme !== 'light';
-        setIsDark(isDarkMode)
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) root.classList.add("dark");
+    else root.classList.remove("dark");
+  }, [isDark]);
 
-        const root = document.documentElement;
-        if (isDarkMode) root.classList.add('dark');
-    },[])
-    
-    useEffect(()=>{
-        if (!mounted)return;
-        const root = document.documentElement;
-        if (isDark) root.classList.add('dark');
-        else root.classList.remove('dark');
-    },[isDark,mounted]);
+  const toggleTheme = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    localStorage.setItem("blog-theme", newDark ? "dark" : "light");
+  };
 
-    const toggleTheme = () => {
-        const newDark = !isDark;
-        setIsDark(newDark);
-        localStorage.setItem('blog-theme',newDark ? 'dark' : 'light');
-    };
-    if (!mounted) return <div className="invisible">{children}</div>;
-    return(
-        <Themecontext.Provider value={{isDark,toggleTheme}}>
-             {{children}}
-        </Themecontext>
-    )
+  return (
+    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
-export const useThemeContext = useContext(Themecontext)
+
+export const useTheme = () => useContext(ThemeContext);
