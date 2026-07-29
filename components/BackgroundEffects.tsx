@@ -1,3 +1,4 @@
+'use client'
 import { useTheme } from "./ThemeProvider";
 import Fireflies from "./Fireflies";
 import Sakura from "./Sakura";

@@ -31,7 +31,7 @@ export default function Fireflies(){
        
     
     return(
-        <div className="fixed inset-0 w-full h-full pointer-events-none z-10 mis-blend-screen">
+        <div className="fixed inset-0 w-full h-full pointer-events-none z-10 mix-blend-screen">
             <style>{
                 `
                 @keyframes fireflyBreathe {
