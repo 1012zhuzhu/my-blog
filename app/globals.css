@@ -9,6 +9,7 @@
   body {
     font-family: var(--font-serif);
     -webkit-font-smoothing: antialiased;
+     background-color: red !important;
   }
 
   /* 滚动条美化 */
@@ -22,4 +23,5 @@
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(99, 102, 241, 0.8);
   }
+  
 }
