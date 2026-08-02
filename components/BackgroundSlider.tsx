@@ -20,7 +20,7 @@ export default function BackgroundSlider(){
       {images.map((img, i) => (
         <div
           key={img}
-          className="absolute inset-0 transition-opacity duration-2000
+          className="absolute inset-0 transition-opacity duration-[2000ms]
           ease-in-out"
           style={{
             backgroundImage: `url(${img})`,
