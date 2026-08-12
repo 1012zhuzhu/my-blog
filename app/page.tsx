@@ -8,6 +8,7 @@ import matter from "gray-matter";
 import Link from "next/link";
 import { siteConfig } from "@/siteConfig";
 import SitDashboard from "@/components/SiteDashboard";
+import SearchBar from "@/components/SearchBar";
 import  LatestPostsCarousel  from "@/components/LatestPostsCarousel";
 
 function formatUpdateTime(date:string){
@@ -65,8 +66,10 @@ export default function Home() {
   return (
     <div className="min-h-screen relative pb-10">
       <Navbar />
+     
       <PageTransition>
         <div className="w-full max-w-6xl mx-auto mt-24 sm:mt-28 px-4 sm:px-6  lg:px-10 relative z-10">
+          <SearchBar  posts={allPosts}/>
 
           <main className="flex flex-col gap-6 w-full mt-6">
           {/* 第一行：个人信息 + 播放器 */}
