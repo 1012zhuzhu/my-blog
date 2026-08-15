@@ -31,7 +31,8 @@ function formatUpdateTime(date:string){
 
 export default function Home() {
   const postDirectory = path.join(process.cwd(),'posts');
-  let allPosts : unknown[] = []
+  interface Post { slug: string; title?: string; description?: string; tags?: string[]; date?: string; cover?: string; formatdate?: string; [key: string]: any }
+  let allPosts: Post[] = []
 
   try{
     if (fs.existsSync(postDirectory)) {

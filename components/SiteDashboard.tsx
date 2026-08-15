@@ -33,7 +33,7 @@ export default function SitDashboard() {
                 <div className="absolute left-0 right-0 top-1/2 h-px bg-black-50"></div>
             </div>
 
-            <div className="flex-1 px-6 py-4 md:py-0 flex flex-wrap iitems-center justify-between gap-4 text-xs md:text-sm font-bold text-slate-600 dark:text-slate-300">
+            <div className="flex-1 px-6 py-4 md:py-0 flex flex-wrap items-center justify-between gap-4 text-xs md:text-sm font-bold text-slate-600 dark:text-slate-300">
                 <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                     <span>已经开始：

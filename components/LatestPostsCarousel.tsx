@@ -54,7 +54,7 @@ export default function LatestPostsCarousel({posts}:{ posts: any[]}){
         </p>
     </div>
     {posts.length > 1 && (
-      <div className='absolute bottom-4 right-6 z-30 flex grap-2'>
+      <div className='absolute bottom-4 right-6 z-30 flex gap-2'>
         {posts.map((_,i) => (
           <button  key={i}
           onClick={(e) =>{
