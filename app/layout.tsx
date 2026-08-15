@@ -3,7 +3,7 @@ import { ThemeProvider } from "../components/ThemeProvider";
 import BackgroundEffects from "../components/BackgroundEffects";
 import { siteConfig } from "../siteConfig";
 import BackgroundSlider from "@/components/BackgroundSlider";
-
+import CyberCat from "@/components/cerbarCat";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" className="h-full" suppressHydrationWarning>
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-white/40 dark:bg-indigo-900/20 blur-[100px] rounded-full z-[-7]" />
 
-            <div className="hidden md:block absolute inset-0 w-full h-full">
+            <div className=" absolute inset-0 w-full h-full">
               <BackgroundEffects />
             </div>
           </div>
@@ -34,6 +34,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* 页面内容 */}
           <div className="relative z-10 flex-1 flex flex-col">
             {children}
+          </div>
+          <div>
+              <CyberCat/>
           </div>
         </ThemeProvider>
 
