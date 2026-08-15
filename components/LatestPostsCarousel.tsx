@@ -33,7 +33,7 @@ export default function LatestPostsCarousel({posts}:{ posts: any[]}){
       transition={{ duration: 0.8}}
       className="absolute inset-0 z-0"
       >
-        <img src={currentPost.cover} className='W-full h-full object-cover transition-transform duration-1000 group-hover:scale-105' alt={currentPost.title}/>
+        <img src={currentPost.cover} className='w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105' alt={currentPost.title}/>
         <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent'></div>
       </motion.div>
     </AnimatePresence>
