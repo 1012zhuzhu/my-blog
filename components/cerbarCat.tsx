@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -111,7 +111,7 @@ export default function CyberCat() {
       dragConstraints={{ left: -200, right: 200, top: -200, bottom: 200 }}
       dragElastic={0.1}
       whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-      className="fixed bottom-20 right-20 z-[9999] flex flex-col items-center group cursor-grab active:cursor-grabbing"
+      className="fixed bottom-20 right-20 z-9999 flex flex-col items-center group cursor-grab active:cursor-grabbing"
     >
       <div className="relative w-full flex justify-center mb-6">
         <AnimatePresence>
