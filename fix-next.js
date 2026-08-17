@@ -1,0 +1,1 @@
+const fs=require('fs'); const c=fs.readFileSync('E:\\\\xiaoxublog\\\\my-blog\\\\clean-repo\\\\next.config.ts','utf8'); const nc=c.replace('export default nextConfig;','cleanDistDir: false,\\\\n};\\\\n\\\\nexport default nextConfig;'); fs.writeFileSync('E:\\\\xiaoxublog\\\\my-blog\\\\clean-repo\\\\next.config.ts',nc); console.log('done')

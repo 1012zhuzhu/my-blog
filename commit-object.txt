@@ -1,0 +1,6 @@
+tree 8b974564b5e2e8b65b2d758ca8db720032c78d4d
+parent af1b8c392fb13ac5e7e403559ad2899d0944b525
+author itheima <itheima@itcast.cn> 1786800853 +0800
+committer itheima <itheima@itcast.cn> 1786800853 +0800
+
+fix: remove BOM from vercel.json

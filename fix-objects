@@ -1,0 +1,2 @@
+fatal: Unable to create temporary file 'E:/xiaoxublog/my-blog/.git/objects/pack/tmp_pack_XXXXXX': Permission denied
+error: index-pack died

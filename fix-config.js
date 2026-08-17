@@ -1,0 +1,1 @@
+const fs=require('fs'); const p=fs.readFileSync('E:\\\\xiaoxublog\\\\my-blog\\\\clean-repo\\\\next.config.ts','utf8'); const newP=p.replace('images: {\\\\n    unoptimized: true,\\\\n  },','images: {\\\\n    unoptimized: true,\\\\n  },\\\\n  cleanDistDir: false'); fs.writeFileSync('E:\\\\xiaoxublog\\\\my-blog\\\\clean-repo\\\\next.config.ts',newP); console.log('done')
