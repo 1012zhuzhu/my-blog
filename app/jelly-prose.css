@@ -1,0 +1,34 @@
+/* app/jelly-prose.css 或 styles/jelly-prose.css */
+
+@layer base {
+  .prose-jelly {
+    /* ===== 基础色彩 ===== */
+    --tw-prose-body: #334155;
+    --tw-prose-headings: #0f172a;
+    --tw-prose-links: #6366f1;
+    --tw-prose-bold: #0f172a;
+    --tw-prose-quotes: #64748b;
+    --tw-prose-quote-borders: #6366f1;
+    --tw-prose-code: #6366f1;
+    --tw-prose-pre-bg: #282c34;
+    --tw-prose-pre-code: #abb2bf;
+    --tw-prose-th-borders: #cbd5e1;
+    --tw-prose-td-borders: #e2e8f0;
+
+    /* ===== 暗黑模式 ===== */
+    --tw-prose-invert-body: #cbd5e1;
+    --tw-prose-invert-headings: #f8fafc;
+    --tw-prose-invert-links: #818cf8;
+    --tw-prose-invert-code: #818cf8;
+    --tw-prose-invert-quote-borders: #818cf8;
+    --tw-prose-invert-pre-bg: #1e1e2e;
+  }
+
+  .dark .prose-jelly {
+    --tw-prose-body: var(--tw-prose-invert-body);
+    --tw-prose-headings: var(--tw-prose-invert-headings);
+    --tw-prose-links: var(--tw-prose-invert-links);
+    --tw-prose-code: var(--tw-prose-invert-code);
+    --tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
+  }
+}
