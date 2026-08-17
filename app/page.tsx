@@ -10,6 +10,7 @@ import { siteConfig } from "@/siteConfig";
 import SitDashboard from "@/components/SiteDashboard";
 import SearchBar from "@/components/SearchBar";
 import  LatestPostsCarousel  from "@/components/LatestPostsCarousel";
+import ThemeBlog from "@/components/ThemeBlog";
 
 function formatUpdateTime(date:string){
   if (!date || date==='1970-01-01') return "处于更新中"
@@ -90,17 +91,8 @@ export default function Home() {
               <LatestPostsCarousel posts={rightPosts} />
             </div>  
 
-              <div className="lg:col-span-8">
-                <Link
-                  href="/photowall"
-                  className="block w-full h-full min-h-[300px] rounded-3xl bg-white/40 dark:bg-slate-800/50 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-xl overflow-hidden transition-all duration-700 hover:scale-[1.02] relative group"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20" />
-                  <div className="absolute bottom-6 left-6">
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white">后续会完善该区域</h3>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm mt-1">你好 →</p>
-                  </div>
-                </Link>
+              <div className="sm:col-span-1 flex flex-col min-h-[120px]">
+                  <ThemeBlog />
               </div>
           </div>
           <div className="w-full mt-4"><SitDashboard/></div>
