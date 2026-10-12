@@ -1,65 +1,66 @@
-import Image from "next/image";
+import fs from 'fs';
+import path from 'path';
+import Link from 'next/link';
+import matter from 'gray-matter';
+import Navbar from '../components/Navbar';
+import ProfileCard from '../components/ProfileCard';
+import PageTransition from '@/components/PageTransition';
+import CloudPlayer from '@/components/CloudPlayer';
+import LatestPostsCarousel from '@/components/LatestPostsCarousel';
+import BackgroundSlider from '@/components/BackgroundSlider';
+import { siteConfig } from '../siteConfig';
+
 
 export default function Home() {
+  // 1. 读取 posts 目录下的所有 Markdown 文件
+  const postsDirectory = path.join(process.cwd(), 'posts');
+  const fileNames = fs.readdirSync(postsDirectory).filter(f => f.endsWith('.md'));
+  
+  const allPosts = fileNames.map(fileName => {
+    const fullPath = path.join(postsDirectory, fileName);
+    const { data } = matter(fs.readFileSync(fullPath, 'utf8'));
+    return {
+      slug: fileName.replace(/\.md$/, ''),
+      title: data.title,
+      description: data.description,
+      date: data.date,
+      cover: data.cover || siteConfig.defaultPostCover,
+    };
+  }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen relative pb-10">
+      <Navbar />
+      
+      {/* 页面过渡动画包裹 */}
+      <PageTransition>
+        <div className="w-full max-w-6xl mx-auto mt-28 px-4 lg:px-10">
+          
+          {/* 第一行：个人信息 + 播放器 */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="lg:col-span-7">
+              <ProfileCard postCount={allPosts.length} />
+            </div>
+            <div className="lg:col-span-5">
+              <CloudPlayer />
+            </div>
+          </div>
+          
+          {/* 第二行：文章轮播 + 照片墙 */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
+            <div className="lg:col-span-4">
+              <LatestPostsCarousel posts={allPosts.slice(0, 5)} />
+            </div>
+            <div className="lg:col-span-8">
+              {/* 照片墙海报 */}
+              <Link href="/photowall" className="...毛玻璃卡片样式...">
+                <img src={siteConfig.photoWallImage} className="..." />
+              </Link>
+            </div>
+          </div>
+          
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </PageTransition>
     </div>
   );
 }
