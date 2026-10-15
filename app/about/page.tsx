@@ -84,10 +84,8 @@ export default async function AboutPage(){
         }
 
         const posts = getDirActivties('posts', '文章', 'posts');
-        const chatters = getDirActivties('chatters', '杂谈', 'chatter');
-        const moments = getDirActivties('moments', '说说', 'moments');
-
-        const allActivities = [...posts, ...chatters, ...moments].sort((a, b) => {
+        // chatters 和 moments 路由暂未实现，暂只展示文章动态
+        const allActivities = [...posts].sort((a, b) => {
             return new Date(b.date).getTime() - new Date(a.date).getTime();
         });
 

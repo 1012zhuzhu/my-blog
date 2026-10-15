@@ -1,29 +1,28 @@
 "use client";
+
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const ThemeContext = createContext({ 
-  isDark: true, 
-  toggleTheme: () => {} 
-});
+const ThemeContext = createContext<{
+  isDark: boolean | undefined;
+  toggleTheme: () => void;
+}>({ isDark: undefined, toggleTheme: () => {} });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  //解决水合不匹配问题，避免引入mounted引发联级渲染
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") return true;
-    return localStorage.getItem("blog-theme") !== "light";
-  });
+  const [isDark, setIsDark] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) root.classList.add("dark");
-    else root.classList.remove("dark");
+    const stored = localStorage.getItem("blog-theme");
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDark(stored === "dark" || (!stored && systemDark));
+  }, []);
+
+  useEffect(() => {
+    if (isDark === undefined) return;
+    document.documentElement.classList.toggle("dark", isDark);
+    localStorage.setItem("blog-theme", isDark ? "dark" : "light");
   }, [isDark]);
 
-  const toggleTheme = () => {
-    const newDark = !isDark;
-    setIsDark(newDark);
-    localStorage.setItem("blog-theme", newDark ? "dark" : "light");
-  };
+  const toggleTheme = () => setIsDark(prev => !prev);
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>

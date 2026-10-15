@@ -1,10 +1,8 @@
 "use client"
-import { div } from "framer-motion/client";
 import { useTheme } from "./ThemeProvider"
 
 export default function ThemeBlog(){
     const {isDark,toggleTheme} = useTheme();
-
     return (
         <div
             onClick={toggleTheme}

@@ -16,9 +16,11 @@ export const siteConfig ={
   ],
    themeColors: ["#a18cd1", "#fbc2eb", "#a1c4fd", "#c2e9fb"], 
 
-   defaultPostCover: "https://默认文章封面.jpg",
+   defaultPostCover: "/images/preview.jpg",
 
    photoWallImage: "/images/reze-wallpaper-v0-covln46a4vaa1.webp",
+
+   cloudMusicIds: ["1974630461", "1835122771", "2616242025", "1353159923"],
 
    social: {
     github: "https://github.com/1012zhuzhu",

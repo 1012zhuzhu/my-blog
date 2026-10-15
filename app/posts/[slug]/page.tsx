@@ -18,8 +18,8 @@ import 'highlight.js/styles/atom-one-dark.css';
 
 import Navbar from '../../../components/Navbar';
 import PageTransition from '../../../components/PageTransition';
+import ClientTOC from '../../../components/ClientTOC';
 import { siteConfig } from '../../../siteConfig';
-import { title } from 'process';
 
 export async function generateStaticParams(){
     const getFilesPath = path.join(process.cwd(),'posts');
@@ -202,9 +202,9 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
               </div>
             </div>
 
-            {/* {postData.toc.length > 0 && (
+            {postData.toc.length > 0 && (
               <ClientTOC toc={postData.toc} />
-            )} */}
+            )}
           </aside>
         </main>
       </PageTransition>
